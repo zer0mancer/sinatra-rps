@@ -2,10 +2,9 @@ require 'sinatra'
 require 'sinatra/reloader'
 
 get('/') do
-  "
-  <h1>Welcome to your Sinatra App!</h1>
-  <p>Define some routes in app.rb</p>
-  "
+  erb(:root)
+
+
 end
 
 get('/rock') do
@@ -27,14 +26,32 @@ erb(:rock)
 end
 
 get('/paper') do
+moves = ["rock", "scissors", "paper"]
 
-  "
-  "
+@computer_move = moves.sample
+
+if @computer_move == "paper"
+  @result = "tied"
+elsif @computer_move == "scissors"
+  @result = "lost"
+else
+  @result = "won"
+end
+
+erb(:paper)
 end
 
 get('/scissors') do
+moves = ["paper", "rock", "scissors"]
 
-  "
-  "
+@computer_move = moves.sample
 
+if @computer_move == "scissors"
+  @result = "tied"
+elsif @computer_move == "rock"
+  @result = "lost"
+else
+  @result = "won"
+end
+  erb(:scissors)
 end
